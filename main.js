@@ -7,8 +7,8 @@ console.log("teste de debug")
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 600,
+    width: 1200,
+    height: 900,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
@@ -18,7 +18,7 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('html/index.html')
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
