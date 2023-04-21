@@ -1,5 +1,5 @@
 {
-  "name": "Trabalho_1",
+  "name": "Trabalho_2",
   "version": "1.0.0",
   "description": "Este trabalho tem por objetivo desenvolver uma interface web, utilizando para isso HTML, CSS, Bootstrap e essa webview deverá ter acesso ao hardware (Node.js) para fazer a escrita em arquivo.",
   "main": "main.js",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-  <html>
+  <html data-bs-theme="dark">
     <head>
       <meta charset="UTF-8">
       <link href=".\assets\css\bootstrap.min.css" rel="stylesheet">
@@ -7,44 +7,49 @@
       <script src=".\js\funcoes.js"></script>
       <script src=".\js\chart.min.js"></script>
       <script src=".\js\chart.js"></script>
-      <title>Trabalho 1</title>
+      <title>Trabalho 2</title>
+      <!--
+      <style>
+        body {
+          background: linear-gradient(to right, #757f9a, #d7dde8); /* default gradient */
+        }
+        
+        /* Dark mode */
+        body.dark-mode {
+          background: linear-gradient(to right, #141e30, #243b55);
+        }
+      </style>
+      -->
     </head>
 
     <body>
       <p></p>
-      <center><h1 class="display-3">Sistema de Aquisição de Sinais</h1></center>
+      <center><h1 class="display-4 fonte">Sistemas de Aquisição de Sinais</h1></center>
       <hr/>
 
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-4">
-            <p><button type="button" class="btn btn-primary">Large button</button></p>
-            <p><button type="button" class="btn btn-primary">Large button</button></p>
-            <p><button type="button" class="btn btn-primary">Large button</button></p>
-            <p><button type="button" class="btn btn-primary">Large button</button></p>
-            <p><button class="btn btn-primary" onclick="toggleMode()" id="toggle-btn">Dark mode</button></p>
+          <div class="col-sm-3">
+            <p><button class="btn btn-primary shadow-sm" onclick="f_gerar_temp()">Gerar Dados Temperatura</button></p>
+            <p><button class="btn btn-primary shadow-sm" onclick="mostra_temperatura()">Plotar Temperatura</button></p>
+            <p><button class="btn btn-primary shadow-sm" onclick="f_gerar_umidade()">Gerar Dados Umidade</button></p>
+            <p><button class="btn btn-primary shadow-sm" onclick="mostra_umidade()">Plotar Umidade</button></p>
+            <p><button class="btn btn-primary shadow-sm">Plotar Temperatura/Umidade</button></p>
+            <p><button class="btn btn-primary shadow-sm" onclick="toggleDarkMode()" id="toggle-btn">Light mode</button></p>
+            <p><button class="btn btn-primary shadow-sm" onclick="close_window()">Fechar</button></p>
           </div>
-
-          <div class="col-sm-9">
-            <canvas id="plot1" width="400" height="200"></canvas>
-            <script>
-            window.onload = () =>
-            {
-            const myChart = new Chart(document.getElementById('plot1'),data_grafico_1);
-            }
-            </script>
-              
-          </div>
-      </div>
-      <hr/> 
-      <div class="d-grid gap-2 d-md-block">
-        <center>
-          <button id="id_ajuda" class="botao" type="button" onclick="f_popup()"><b>AJUDA</b></button>
-          <button id="id_fechar" class="botao" type="button" onclick="close_window()"><b>FECHAR</b></button>
-        </center>
+          <div style="width: 400px" class="col-sm-3"><canvas id="temperatura"></canvas></div><br/>
+          <div style="width: 400px" class="col-sm-3"><canvas id="umidade"></canvas></div><br/>
       </div>
       <hr/>
-      <center><b>24/03/2023</b></center>
+      <center><div id="clock"></div></center>
     </body>
+    <!--
+    <script>
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark-mode'); // apply the dark mode gradient
+    }
+    </script>
+    -->
   </html>
 <!DOCTYPE html>

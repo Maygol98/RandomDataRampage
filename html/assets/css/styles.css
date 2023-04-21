@@ -1,35 +1,13 @@
-/* styles.css */
-.classe_estilo_titulo
-{
-    color:deeppink;
-    text-align:center;
-    border-style: dashed;
-    background-color: black;
-    
+.red-blue {
+    background: linear-gradient(to right, red, blue);
+    color: white;
+    border: none;
 }
 
-.classe_imagem
-{
-    width: 400px;
-    height: 200px;
+.uau {
+    background: linear-gradient(to bottom right, black, rgb(0, 0, 165));
 }
 
-.botao
-{
-    width: 120px;
-    height: auto;
-    background-color: white;
-    border-color: blue;
-    border-width: 3px;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-
+.fonte{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
-.tilera{
-    display: block;
-    text-align: center;
-}
-.container{
-    border-left: 500px;
-}
-/* Add styles here to customize the appearance of your app */
