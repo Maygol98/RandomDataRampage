@@ -83,7 +83,7 @@ function mostra_umidade(){
       data: {
           labels: vetorIndices,
           datasets: [{
-              label: 'Temperatura',
+              label: 'Umidade',
               data: vetorUmidade,
               backgroundColor: 'rgba(0, 0, 255, 0.2)',
               borderColor: 'rgba(0, 0, 255, 1)',
@@ -99,6 +99,41 @@ function mostra_umidade(){
       }
   });
 }
+
+
+/*Plot Grafico em Conjunto*/
+function mostra_umidade2(){
+  // Carregar o vetor de temperatura do arquivo
+  var vetorUmidade = fs.readFileSync('html/assets/txt/umidade.txt', 'utf8').split('\n').map(Number);
+
+  // Criar um vetor de índices de 0 a 99
+  var vetorIndices = [];
+  for (let i = 0; i < 100; i++) {
+    vetorIndices.push(i);
+  }
+var ctx2 = document.getElementById('umidade2').getContext('2d');
+  var umidade = new Chart(ctx2, {
+      type: 'line',
+      data: {
+          labels: vetorIndices,
+          datasets: [{
+              label: 'Umidade',
+              data: vetorUmidade,
+              backgroundColor: 'rgba(0, 0, 255, 0.2)',
+              borderColor: 'rgba(0, 0, 255, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+}
+
 
 function toggleMode() {
     const htmlElement = document.documentElement;
