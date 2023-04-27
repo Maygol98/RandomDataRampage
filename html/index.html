@@ -27,22 +27,20 @@
       <center><h1 class="display-4 fonte">Sistemas de Aquisição de Sinais</h1></center>
       <hr/>
 
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
-          <div class="col-sm-3">
-            <p><button class="btn btn-primary shadow-sm" onclick="f_gerar_temp()">Gerar Dados Temperatura</button></p>
-            <p><button class="btn btn-primary shadow-sm" onclick="mostra_temperatura()">Plotar Temperatura</button></p>
-            <p><button class="btn btn-primary shadow-sm" onclick="f_gerar_umidade()">Gerar Dados Umidade</button></p>
-            <p><button class="btn btn-primary shadow-sm" onclick="mostra_umidade()">Plotar Umidade</button></p>
-            <p><button class="btn btn-primary shadow-sm" onclick="mostra_umidade2()">Plotar Temperatura/Umidade</button></p>
-            <p><button class="btn btn-primary shadow-sm" onclick="toggleDarkMode()" id="toggle-btn">Light mode</button></p>
-            <p><button class="btn btn-primary shadow-sm" onclick="close_window()">Fechar</button></p>
+          <div class="container col-sm-3">
+            <button class="btn btn-primary margem" onclick="f_gerar_temp()">Gerar Dados Temperatura</button>
+            <button class="btn btn-primary margem" onclick="mostra_temperatura()">Plotar Temperatura</button>
+            <button class="btn btn-primary margem" onclick="f_gerar_umidade()">Gerar Dados Umidade</button>
+            <button class="btn btn-primary margem" onclick="mostra_umidade()">Plotar Umidade</button>
+            <button class="btn btn-primary margem" onclick="mostra_umidade2()">Plotar Temperatura/Umidade</button>
+            <button class="btn btn-primary margem" onclick="toggleDarkMode()" id="toggle-btn">Light mode</button>
+            <button class="btn btn-primary margem" onclick="close_window()">Fechar</button>
           </div>
-          <div class="col-sm-9" style="display: flex; width: 400px">
-            <canvas id="temperatura" style="width: 50%"></canvas>
-            <canvas id="umidade" style="width: 50%; word-break: break-all !important;"></canvas>
-            <canvas id="umidade2"></canvas>
-          </div>
+          <div class="col-sm-4"><canvas id="temperatura"></canvas></div>
+          <div class="col-sm-4"><canvas id="umidade"></canvas></div>
+          <div style="width: 400px; margin-left: 50%; margin-top: 5%" class="col-sm-4"><canvas id="umidade2"></canvas></div>
         </div>
           <hr/>
       <center><div id="clock"></div></center>

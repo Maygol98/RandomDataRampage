@@ -42,11 +42,12 @@ function mostra_temperatura(){
           }]
       },
       options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
+        aspectRatio: 1.3,
+        scales: {
+          y: {
+            beginAtZero: true
           }
+        }
       }
   });
 }
@@ -91,11 +92,12 @@ function mostra_umidade(){
           }]
       },
       options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
+        aspectRatio: 1.3,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
       }
   });
 }

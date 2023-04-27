@@ -11,3 +11,8 @@
 .fonte{
     font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+.margem{
+    margin-top: 15px;
+    width: 70%;  
+}
