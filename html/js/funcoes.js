@@ -1,11 +1,12 @@
 const fs = require('fs');
 
-const vetorTemperatura = [];
-const vetorUmidade = [];
+let temperaturaChart = null;
+let umidadeChart = null;
+let temperaturaUmidadechart = null;
 
 function f_gerar_temp()
 {
-  vetorTemperatura.length = 0;
+  const vetorTemperatura = [];
   console.log(vetorTemperatura.length);
   for (let i = 0; i < 100; i++) {
       num =(Math.random()*100);
@@ -14,30 +15,34 @@ function f_gerar_temp()
       console.log(decimal);
   }  
   fs.writeFileSync('html/assets/txt/temperatura.txt', String(vetorTemperatura.join('\n')));
-  //return vetorTemperatura;
 }
 
 function mostra_temperatura(){
+  // Remover o gráfico anterior, se existir
+  if (temperaturaChart !== null) {
+    temperaturaChart.destroy();
+  }
+
   // Carregar o vetor de temperatura do arquivo
-  var vetorTemperatura = fs.readFileSync('html/assets/txt/temperatura.txt', 'utf8').split('\n').map(Number);
+  const vetorTemperatura = fs.readFileSync('html/assets/txt/temperatura.txt', 'utf8').split('\n').map(Number);
 
   // Criar um vetor de índices de 0 a 99
-  var vetorIndices = [];
+  const vetorIndices = [];
   for (let i = 0; i < 100; i++) {
     vetorIndices.push(i);
   }
 
   // Criar o gráfico com o chart.js
-  var ctx = document.getElementById('temperatura').getContext('2d');
-  var temperatura = new Chart(ctx, {
+  const ctx = document.getElementById('temperatura').getContext('2d');
+  temperaturaChart = new Chart(ctx, {
       type: 'line',
       data: {
           labels: vetorIndices,
           datasets: [{
               label: 'Temperatura',
               data: vetorTemperatura,
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgba(255, 99, 132, 1)',
+              backgroundColor: 'rgba(255, 102, 102, 0.2)',
+              borderColor:     'rgba(255, 102, 102, 1)',
               borderWidth: 1
           }]
       },
@@ -51,23 +56,29 @@ function mostra_temperatura(){
       }
   });
 }
+
   
   
 function f_gerar_umidade()
 {
-    vetorUmidade.length = 0;
-    console.log(vetorUmidade.length);
-    for (let i = 0; i < 100; i++) {
-        umi =(Math.random()*100);
-        const umi_decimal = umi.toFixed(2);
-        vetorUmidade.push(umi_decimal);
-        console.log(umi_decimal);
-    }
+  const vetorUmidade = [];
+  console.log(vetorUmidade.length);
+  for (let i = 0; i < 100; i++) {
+      umi =(Math.random()*100);
+      const umi_decimal = umi.toFixed(2);
+      vetorUmidade.push(umi_decimal);
+      console.log(umi_decimal);
+  }
 
-    fs.writeFileSync('html/assets/txt/umidade.txt', String(vetorUmidade.join('\n')));
+  fs.writeFileSync('html/assets/txt/umidade.txt', String(vetorUmidade.join('\n')));
 }
 
 function mostra_umidade(){
+  // Remover o gráfico anterior, se existir
+  if (umidadeChart !== null) {
+    umidadeChart.destroy();
+  }
+
   // Carregar o vetor de temperatura do arquivo
   var vetorUmidade = fs.readFileSync('html/assets/txt/umidade.txt', 'utf8').split('\n').map(Number);
 
@@ -76,22 +87,22 @@ function mostra_umidade(){
   for (let i = 0; i < 100; i++) {
     vetorIndices.push(i);
   }
-
   // Criar o gráfico com o chart.js
   var ctx = document.getElementById('umidade').getContext('2d');
-  var umidade = new Chart(ctx, {
+  umidadeChart = new Chart(ctx, {
       type: 'line',
       data: {
           labels: vetorIndices,
           datasets: [{
               label: 'Umidade',
               data: vetorUmidade,
-              backgroundColor: 'rgba(0, 0, 255, 0.2)',
-              borderColor: 'rgba(0, 0, 255, 1)',
+              backgroundColor: 'rgba(102, 153, 255, 0.2)',
+              borderColor:     'rgba(102, 153, 255, 1)',
               borderWidth: 1
           }]
       },
       options: {
+        tension: 0.4,
         aspectRatio: 1.3,
         scales: {
             y: {
@@ -104,55 +115,52 @@ function mostra_umidade(){
 
 
 /*Plot Grafico em Conjunto*/
-function mostra_umidade2(){
+function umidade_temperatura(){
+   // Remover o gráfico anterior, se existir
+   if (temperaturaUmidadechart !== null) {
+    temperaturaUmidadechart.destroy();
+  }
+
   // Carregar o vetor de temperatura do arquivo
   var vetorUmidade = fs.readFileSync('html/assets/txt/umidade.txt', 'utf8').split('\n').map(Number);
+  var vetorTemperatura = fs.readFileSync('html/assets/txt/temperatura.txt', 'utf8').split('\n').map(Number);
 
   // Criar um vetor de índices de 0 a 99
   var vetorIndices = [];
+  
   for (let i = 0; i < 100; i++) {
     vetorIndices.push(i);
   }
-var ctx2 = document.getElementById('umidade2').getContext('2d');
-  var umidade = new Chart(ctx2, {
+  var ctx2 = document.getElementById('umidade_temperatura').getContext('2d');
+  temperaturaUmidadechart = new Chart(ctx2, {
       type: 'line',
       data: {
           labels: vetorIndices,
           datasets: [{
               label: 'Umidade',
               data: vetorUmidade,
-              backgroundColor: 'rgba(0, 0, 255, 0.2)',
-              borderColor: 'rgba(0, 0, 255, 1)',
+              backgroundColor: 'rgba(102, 153, 255, 0.2)',
+              borderColor:     'rgba(102, 153, 255, 1)',
               borderWidth: 1
-          }]
+          },
+          {
+            label: 'Temperatura',
+            data: vetorTemperatura,
+            backgroundColor: 'rgba(255, 102, 102, 0.2)',
+            borderColor:     'rgba(255, 102, 102, 1)',
+            borderWidth: 1
+        }]
       },
       options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
+        aspectRatio: 1.8,
+        scales: {
+          y: {
+              beginAtZero: true
+            }
+        }
       }
   });
 }
-
-
-function toggleMode() {
-    const htmlElement = document.documentElement;
-    const toggleBtn = document.getElementById("toggle-btn");
-    
-    if (htmlElement.getAttribute("data-bs-theme") === "dark") {
-      htmlElement.setAttribute("data-bs-theme", "light");
-      toggleBtn.innerText = "Dark mode";
-      toggleBtn.classList.remove("btn-secondary");
-      toggleBtn.classList.add("btn-primary");
-    } else {
-      htmlElement.setAttribute("data-bs-theme", "dark");
-      toggleBtn.innerText = "Light mode";
-      toggleBtn.classList.remove("btn-primary");
-      toggleBtn.classList.add("btn-secondary");
-    }
-  }
 
 function f_popup()
 {
@@ -167,7 +175,7 @@ function close_window()
 
 function toggleDarkMode() {
   var body = document.body;
-  body.classList.toggle('dark-mode'); // toggle the "dark-mode" class
+  body.classList.toggle('dark-mode'); // toggle "dark-mode" class
 
   const htmlElement = document.documentElement;
   const toggleBtn = document.getElementById("toggle-btn");
@@ -175,13 +183,9 @@ function toggleDarkMode() {
   if (htmlElement.getAttribute("data-bs-theme") === "dark") {
     htmlElement.setAttribute("data-bs-theme", "light");
     toggleBtn.innerText = "Dark mode";
-    toggleBtn.classList.remove("btn-secondary");
-    toggleBtn.classList.add("btn-primary");
   } else {
     htmlElement.setAttribute("data-bs-theme", "dark");
     toggleBtn.innerText = "Light mode";
-    toggleBtn.classList.remove("btn-primary");
-    toggleBtn.classList.add("btn-secondary");
   }
 }
 

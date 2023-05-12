@@ -7,8 +7,8 @@ console.log("teste de debug")
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 900,
+    width: 1536,
+    height: 850,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
@@ -21,7 +21,7 @@ function createWindow () {
   mainWindow.loadFile('html/index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
